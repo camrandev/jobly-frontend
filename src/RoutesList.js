@@ -4,6 +4,11 @@ import {
   Route,
   Navigate
 } from 'react-router-dom';
+import Homepage from "./Homepage";
+import CompaniesList from "./CompaniesList";
+import CompanyDetails from "./CompanyDetails";
+import Jobs from "./Jobs";
+
 
 /**Routes for CompaniesList, JobsList, Homepage, CompanyDetails */
 function RoutesList(){
@@ -11,7 +16,7 @@ function RoutesList(){
     <Routes>
       <Route
         path="/"
-        element={<HomePage />}
+        element={<Homepage />}
       />
 
       <Route
