@@ -1,40 +1,44 @@
 import React, { useState } from "react";
 
-
- /** DESCRIPTION
-*
-* Props:
-*
-* State:
-*
-* PARENT -> SearchForm -> {CHILDREN}
-*/
+/** DESCRIPTION
+ *
+ * Props:
+ *
+ * State:
+ *
+ * PARENT -> SearchForm -> {CHILDREN}
+ */
 
 //will take prop -> handleSubmit
-function SearchForm ({ submitSearch }) {
+function SearchForm({ submitSearch }) {
   const [formData, setFormData] = useState({
-    searchBy: ""
+    handle: "",
   });
 
   function handleChange(evt) {
     const { name, value } = evt.target;
-    setFormData(fData => ({
+    setFormData((fData) => ({
       ...fData,
       [name]: value,
     }));
-    console.log("Updated search by is", formData.searchBy)
+    console.log("Updated search by is", formData.searchBy);
+  }
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    submitSearch(formData);
   }
 
   return (
     <div className="container mt-4">
       <div className="row justify-content-center">
         <div className="col-md-6">
-          <form onSubmit={() => submitSearch(formData.searchBy)}>
+          <form onSubmit={handleSubmit}>
             <div className="input-group">
               <input
-                id="searchBy"
-                name="searchBy"
-                value={formData.searchBy}
+                id="handle"
+                name="handle"
+                value={formData.handle}
                 onChange={handleChange}
                 className="form-control"
                 placeholder="Enter search term..."
@@ -51,7 +55,5 @@ function SearchForm ({ submitSearch }) {
     </div>
   );
 }
-
-
 
 export default SearchForm;

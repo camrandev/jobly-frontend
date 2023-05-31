@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 function CompanyCard ({company}) {
 
   return (
-    <Link to={`/company/exampleCompany`}>
+    <Link to={`companies/:name`}>
       <h3>CompanyCard</h3>
 
     </Link>
