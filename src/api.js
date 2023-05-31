@@ -47,6 +47,8 @@ class JoblyApi {
 
   /** Get list of all companies */
   static async getCompanies(params) {
+    params = !params ? "" : {nameLike:params};
+    console.log('params in getCompanies', params)
     let res = await this.request(`companies`, params);
     return res.companies;
   }

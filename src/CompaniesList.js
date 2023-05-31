@@ -38,7 +38,8 @@ function CompaniesList() {
 
   //function to pass down to searchform
   async function submitSearch(params) {
-    params = !params.nameLike ? "" : params;
+    console.log('params in submit', params)
+    // params = !params.nameLike ? "" : params;
     try {
       const res = await JoblyApi.getCompanies(params);
       setData({
