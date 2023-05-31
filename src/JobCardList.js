@@ -11,11 +11,14 @@ import JobCard from './JobCard';
 */
 
 function JobCardList ({jobs}) {
-
+  function renderJobCards() {
+    return jobs.map((job) => {
+      return <JobCard key={job.id} job={job} />;
+    });
+  }
   return (
     <div>
-      <h3>renders list of job cards via map</h3>
-      <JobCard />
+      {renderJobCards()}
     </div>
   )
 }

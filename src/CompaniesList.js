@@ -22,7 +22,6 @@ function CompaniesList() {
     searchBy: "",
     companies: [],
   });
-  console.log("data.companies is>>>", data.companies);
 
   async function getCompanies() {
     const companies = await JoblyApi.getCompanies();
@@ -39,7 +38,7 @@ function CompaniesList() {
 
   //function to pass down to searchform
   async function submitSearch(params) {
-    params = !params.nameLike ? '' : params
+    params = !params.nameLike ? "" : params;
     try {
       const res = await JoblyApi.getCompanies(params);
       setData({
@@ -61,7 +60,7 @@ function CompaniesList() {
   //render function
   function renderInfo() {
     return data.companies.map((company) => {
-      return <CompanyCard company={company} />;
+      return <CompanyCard key={company.handle} company={company} />;
     });
   }
 
