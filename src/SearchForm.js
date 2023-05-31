@@ -12,6 +12,7 @@ import React, { useState } from "react";
 
 //will take prop -> handleSubmit
 function SearchForm ({ submitSearch }) {
+  
   const [formData, setFormData] = useState({
     searchBy: ""
   });
@@ -22,14 +23,14 @@ function SearchForm ({ submitSearch }) {
       ...fData,
       [name]: value,
     }));
-    console.log("Updated search by is", formData.searchBy)
   }
+  console.log("Updated search by is", formData.searchBy)
 
   return (
     <div className="container mt-4">
       <div className="row justify-content-center">
         <div className="col-md-6">
-          <form onSubmit={() => submitSearch(formData.searchBy)}>
+          <form onSubmit={async () => await submitSearch(formData.searchBy)}>
             <div className="input-group">
               <input
                 id="searchBy"
