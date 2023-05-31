@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import JobCardList from './JobCardList';
+import { useParams } from 'react-router-dom';
 
 
  /** DESCRIPTION
@@ -17,11 +18,12 @@ function CompanyDetails () {
   // useEffect(() => {
 
   // }, [])
+  const { name } = useParams();
 
   return (
     <div>
-      <h3>CompanyDetails</h3>
-      <JobCardList/>
+      <h3>1 CompanyDetails, param is {name}</h3>
+      <JobCardList />
     </div>
   )
 }

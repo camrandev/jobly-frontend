@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+// { useState, useEffect }
 
  /** DESCRIPTION
 *
@@ -14,7 +15,7 @@ function JobCard ({job}) {
 
   return (
     <div>
-      <h3>displays job details</h3>
+      <h3>JobCard Component /</h3>
     </div>
   )
 }
