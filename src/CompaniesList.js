@@ -23,19 +23,32 @@ function CompaniesList() {
     companies: [],
   });
 
+  async function getCompanies() {
+    const companies = await JoblyApi.getCompanies();
+    setData({
+      isLoading: false,
+      searchBy: "",
+      companies: companies
+    });
+  }
+
   useEffect(() => {
-    async function getCompanies() {
-      const companies = await JoblyApi.getCompanies();
-      setData({
-        isLoading: false,
-        companies: companies.companies,
-      });
-    }
     getCompanies();
   }, []);
+  console.log("all companies are", data.companies)
 
-  console.log(data.companies)
   //function to pass down to searchform
+  async function submitSearch(str){
+    console.log("searching by>>>", str)
+    const res = await JoblyApi.getCompany(str);
+    console.log("res is ", res)
+    setData({
+      isLoading: false,
+      searchBy: "",
+      companies: res
+    });
+
+  }
   //hit our API with whatever term is in search term
   //set state in this component to the result of that API call
 
@@ -46,7 +59,7 @@ function CompaniesList() {
   return (
     <div>
       <div>
-        <SearchForm />
+        <SearchForm submitSearch={submitSearch}/>
         <CompanyCard />
         {/* {renderFunction()} */}
       </div>
