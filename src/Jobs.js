@@ -50,7 +50,6 @@ function Jobs () {
 
   return (
     <div>
-      <h3>Jobs</h3>
       <div>
         <SearchForm submitSearch={submitSearch}/>
         <JobCardList jobs={allJobs.jobs}/>

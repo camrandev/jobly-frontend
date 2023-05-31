@@ -1,26 +1,21 @@
-import React from 'react';
+import React from "react";
 
- /** DESCRIPTION
-*
-* Props:
-*
-* State:
-*
-* PARENT -> Homepage -> {CHILDREN}
-*/
+/** simple landing page
+ *
+ * Props: none
+ *
+ * State: none
+ *
+ * RoutesList -> Homepage
+ */
 
-function Homepage () {
-  // const [ , ] = useState( );
-
-  // useEffect(() => {
-
-  // }, [])
-
+function Homepage() {
   return (
-    <div>
-      <h3>Jobly Homepage</h3>
+    <div className="position-absolute top-50 start-50 translate-middle">
+      <h3 className="text-center">Jobly</h3>
+      <h6>All the jobs in one, convenient place.</h6>
     </div>
-  )
+  );
 }
 
 export default Homepage;

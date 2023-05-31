@@ -19,15 +19,25 @@ import JoblyApi from "./api";
 function CompaniesList() {
   const [data, setData] = useState({
     isLoading: true,
-    searchBy: "",
     companies: [],
   });
 
+  /**
+   * get an array of all the companies
+   *
+   * returns 	"companies": [
+		{
+			"handle": "string",
+			"name": "string",
+			"description": "string",
+			"numEmployees": integer,
+			"logoUrl": "string"
+		}...]
+   */
   async function getCompanies() {
     const companies = await JoblyApi.getCompanies();
     setData({
       isLoading: false,
-      searchBy: "",
       companies: companies,
     });
   }
@@ -38,13 +48,10 @@ function CompaniesList() {
 
   //function to pass down to searchform
   async function submitSearch(params) {
-    console.log('params in submit', params)
-    // params = !params.nameLike ? "" : params;
     try {
       const res = await JoblyApi.getCompanies(params);
       setData({
         isLoading: false,
-        searchBy: "",
         companies: res,
       });
     } catch (err) {
