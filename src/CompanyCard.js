@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+//import the file path
 
  /** DESCRIPTION
 *
@@ -11,6 +12,8 @@ import { Link } from "react-router-dom";
 */
 
 function CompanyCard ({ company }) {
+  const imagePath = `../public${company.logoUrl}`
+  console.log('company', company)
 
   return (
     <div className="container my-5 mx-auto text-left">
@@ -21,6 +24,7 @@ function CompanyCard ({ company }) {
       >
         <h1 className="company-title">{company.name}</h1>
         <p>{company.description}</p>
+        <img src={`${imagePath}`} alt="" />
       </Link>
     </div>
   );
