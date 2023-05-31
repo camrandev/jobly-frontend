@@ -32,7 +32,7 @@ function Jobs () {
   }, [])
 
   async function submitSearch(params) {
-    params = !params.title ? "" : params;
+    console.log('params in submitSearch', params)
     try {
       const res = await JoblyApi.getJobs(params);
       setAllJobs({
