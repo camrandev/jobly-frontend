@@ -1,0 +1,11 @@
+.company-card {
+    transition: box-shadow 0.3s;
+  }
+
+  .company-card:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  }
+
+  .company-card:hover .text-dark {
+    color: blue !important;
+  }
