@@ -32,7 +32,7 @@ function CompanyCard({ company }) {
   const logoUrl = process.env.PUBLIC_URL + `${company.logoUrl}`;
 
   return (
-    <div className="container my-5 mx-auto text-left company-card">
+    <div className="container my-5 mx-auto text-left company-card bg-white">
       <Link
         to={`/company/${company.handle}`}
         className="text-left text-dark"
