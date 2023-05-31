@@ -17,14 +17,9 @@ function JobCard({ job }) {
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">{job.title}</h5>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
+        {job.companyName && <h6 class="card-title">{job.companyName}</h6>}
+        {job.salary && <p className="card-text mb-0">Salary: {job.salary}</p>}
+        {job.equity && <p className="card-text mb-0">Equity: {job.equity}</p>}
       </div>
     </div>
   );
