@@ -22,6 +22,7 @@ function CompaniesList() {
     searchBy: "",
     companies: [],
   });
+  console.log("data.companies is>>>", data.companies)
 
   async function getCompanies() {
     const companies = await JoblyApi.getCompanies();
@@ -49,15 +50,22 @@ function CompaniesList() {
   //set state in this component to the result of that API call
 
   //loading screen return
+  if (data.isLoading) return <h1>Loading....</h1>
 
   //render function
+  function renderInfo(){
+    return data.companies.map(company=>{
+      return (
+        <CompanyCard company={company}/>
+      )
+    })
+  }
 
   return (
     <div>
       <div>
         <SearchForm submitSearch={submitSearch}/>
-        <CompanyCard />
-        {/* {renderFunction()} */}
+        {renderInfo()}
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ import React, { useState } from "react";
 //will take prop -> handleSubmit
 function SearchForm({ submitSearch }) {
   const [formData, setFormData] = useState({
-    handle: "",
+    nameLike: ""
   });
 
   function handleChange(evt) {
@@ -21,14 +21,14 @@ function SearchForm({ submitSearch }) {
       ...fData,
       [name]: value,
     }));
-    console.log("Updated search by is", formData.searchBy);
+    console.log("Updated search by is", formData.nameLike);
   }
 
   function handleSubmit(evt) {
     evt.preventDefault();
     submitSearch(formData);
   }
-  console.log("Updated search by is", formData.searchBy)
+  console.log("Updated search by is", formData.nameLike)
 
   return (
     <div className="container mt-4">
@@ -37,9 +37,9 @@ function SearchForm({ submitSearch }) {
           <form onSubmit={handleSubmit}>
             <div className="input-group">
               <input
-                id="handle"
-                name="handle"
-                value={formData.handle}
+                id="nameLike"
+                name="nameLike"
+                value={formData.nameLike}
                 onChange={handleChange}
                 className="form-control"
                 placeholder="Enter search term..."
