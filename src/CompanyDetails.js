@@ -20,10 +20,11 @@ function CompanyDetails () {
   // }, [])
   const { name } = useParams();
 
+  //map all the jobs into JobCard components
+
   return (
     <div>
       <h3>1 CompanyDetails, param is {name}</h3>
-      <JobCardList />
     </div>
   )
 }

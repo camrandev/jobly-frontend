@@ -1,5 +1,7 @@
 .company-card {
+    position: relative;
     transition: box-shadow 0.3s;
+    width: 65%;
   }
 
   .company-card:hover {
@@ -8,4 +10,14 @@
 
   .company-card:hover .text-dark {
     color: blue !important;
+  }
+
+  .image-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .company-logo {
+    width: 3.5rem;
   }

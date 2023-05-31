@@ -22,14 +22,14 @@ function CompaniesList() {
     searchBy: "",
     companies: [],
   });
-  console.log("data.companies is>>>", data.companies)
+  console.log("data.companies is>>>", data.companies);
 
   async function getCompanies() {
     const companies = await JoblyApi.getCompanies();
     setData({
       isLoading: false,
       searchBy: "",
-      companies: companies
+      companies: companies,
     });
   }
 
@@ -38,33 +38,37 @@ function CompaniesList() {
   }, []);
 
   //function to pass down to searchform
-  async function submitSearch(params){
-    const res = await JoblyApi.getCompanies(params);
-    setData({
-      isLoading: false,
-      searchBy: "",
-      companies: res
-    });
+  async function submitSearch(params) {
+    params = !params.nameLike ? '' : params
+    try {
+      const res = await JoblyApi.getCompanies(params);
+      setData({
+        isLoading: false,
+        searchBy: "",
+        companies: res,
+      });
+    } catch (err) {
+      window.alert("there was an error with your search");
+      return;
+    }
   }
   //hit our API with whatever term is in search term
   //set state in this component to the result of that API call
 
   //loading screen return
-  if (data.isLoading) return <h1>Loading....</h1>
+  if (data.isLoading) return <h1>Loading....</h1>;
 
   //render function
-  function renderInfo(){
-    return data.companies.map(company=>{
-      return (
-        <CompanyCard company={company}/>
-      )
-    })
+  function renderInfo() {
+    return data.companies.map((company) => {
+      return <CompanyCard company={company} />;
+    });
   }
 
   return (
     <div>
       <div>
-        <SearchForm submitSearch={submitSearch}/>
+        <SearchForm submitSearch={submitSearch} />
         {renderInfo()}
       </div>
     </div>
