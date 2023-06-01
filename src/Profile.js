@@ -14,6 +14,9 @@ function Profile({ update }) {
   //initial data to be set from the userObject in context
   const { user } = useContext(userContext);
   const [formData, setFormData] = useState({ ...user });
+  const [errors, setErrors] = useState([]);
+  const [updated, setUpdated ]= useState(false);
+
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -23,11 +26,22 @@ function Profile({ update }) {
     }));
   }
 
-  function handleSubmit(evt) {
+  function handleError(error) {
+    console.log("error in handleErrors is...", error)
+    setErrors([...error]);
+  }
+
+  async function handleSubmit(evt) {
     console.log("hello from Profile");
     evt.preventDefault();
+    try {
+      await update(formData);
+      handleError([]);
+      setUpdated(true)
+    } catch(error){
+      handleError(error);
+    }
 
-    update(formData);
   }
 
   //TODO: handle errors
@@ -95,7 +109,11 @@ function Profile({ update }) {
             aria-describedby="emailHelp"
           />
         </div>
-
+        {errors.length > 0 && <div className="alert alert-danger">
+          {errors.map((error, index) => <p key={index} className="mb-0 small">Error: {error}</p>)}
+          </div>
+        }
+        {updated && <p className="alert alert-success">Updated Successfully</p>}
         <button className="btn btn-primary">Submit</button>
       </form>
     </div>

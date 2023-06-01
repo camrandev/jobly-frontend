@@ -14,6 +14,8 @@ import { Navigate } from "react-router-dom";
 function LoginForm({ login }) {
   const [formData, setFormData] = useState({});
   const { user } = useContext(userContext);
+  const [errors, setErrors] = useState([]);
+
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -23,9 +25,19 @@ function LoginForm({ login }) {
     }));
   }
 
-  function handleSubmit(evt) {
+  function handleError(error) {
+    console.log("error in handleErrors is...", error)
+    setErrors([...error]);
+  }
+
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    login(formData);
+    try {
+      await login(formData);
+      handleError([]);
+    } catch (error){
+      handleError(error);
+    }
   }
 
   //TODO: handle errors
@@ -65,7 +77,10 @@ function LoginForm({ login }) {
             aria-describedby="passwordHelp"
           />
         </div>
-
+        {errors.length > 0 && <div className="alert alert-danger">
+          {errors.map((error, index) => <p key={index} className="mb-0 small">Error: {error}</p>)}
+          </div>
+        }
         <button className="btn btn-primary">Submit</button>
       </form>
     </div>
