@@ -19,31 +19,32 @@ import JoblyApi from "./api";
 function CompaniesList() {
   const [data, setData] = useState({
     isLoading: true,
-    searchBy: "",
     companies: [],
   });
 
+  /**
+   * get an array of all the companies,
+    then sets State
+   */
   async function getCompanies() {
     const companies = await JoblyApi.getCompanies();
     setData({
       isLoading: false,
-      searchBy: "",
       companies: companies,
     });
   }
-
+  /** useEffect runs our getCompanies function*/
   useEffect(() => {
     getCompanies();
   }, []);
 
-  //function to pass down to searchform
+  /** Function submitSearch receives string and makes AJAX request using static
+   *  method from our JoblyApi class, then sets State or catches error and alerts*/
   async function submitSearch(params) {
-    params = !params.nameLike ? "" : params;
     try {
       const res = await JoblyApi.getCompanies(params);
       setData({
         isLoading: false,
-        searchBy: "",
         companies: res,
       });
     } catch (err) {
@@ -51,13 +52,10 @@ function CompaniesList() {
       return;
     }
   }
-  //hit our API with whatever term is in search term
-  //set state in this component to the result of that API call
 
-  //loading screen return
   if (data.isLoading) return <h1>Loading....</h1>;
 
-  //render function
+  /** renderInfo receives nothing, returns instances of the CompanyCard component*/
   function renderInfo() {
     return data.companies.map((company) => {
       return <CompanyCard key={company.handle} company={company} />;

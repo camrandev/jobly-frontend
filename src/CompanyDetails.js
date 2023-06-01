@@ -5,11 +5,15 @@ import JoblyApi from "./api";
 
 /** DESCRIPTION
  *
- * Props:
+ * Props: none
  *
  * State:
+ * - object {isLoading: bool, data:null}
  *
- * PARENT -> CompanyDetails -> {CHILDREN}
+ * Effects:
+ * - after first render, send API request for company by name
+ *
+ * PARENT -> CompanyDetails -> {JobCardList}
  */
 
 function CompanyDetails() {
@@ -19,7 +23,7 @@ function CompanyDetails() {
     isLoading: true,
     data: null,
   });
-
+  /**  after first render, send API request for company by name, setState*/
   useEffect(() => {
     async function getCompany() {
       const res = await JoblyApi.getCompany(name);
@@ -39,7 +43,7 @@ function CompanyDetails() {
       <h4>{company.data.name}</h4>
       <p>{company.data.description}</p>
 
-      <JobCardList jobs ={company.data.jobs}/>
+      <JobCardList jobs={company.data.jobs} />
     </div>
   );
 }

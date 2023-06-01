@@ -5,21 +5,23 @@ import JobCardList from './JobCardList';
 import JoblyApi from './api';
 
  /** DESCRIPTION
-*
-* Props:
+*Jobs uses useState and useEffect to make an AJAX request for all the jobs and
+saves them in state then passes the jobs to JobCardList and passes the function
+ to change the state of jobs to the SearchForm.
+
+* Props: none
 *
 * State:
+* - object {isLoading: bool, jobs: []}
 *
-* PARENT -> Jobs -> {CHILDREN}
+* RoutesList -> Jobs -> {SearchForm, JobCardList}
 */
-
 function Jobs () {
   const [allJobs, setAllJobs] = useState({
     isLoading: true,
-    jobs: [],
-    compName: ""
+    jobs: []
   });
-
+  /** Gets all the jobs via AJAX request then saves them to state*/
   useEffect(() => {
     async function getAllJobs(){
       const res = await JoblyApi.getJobs();
@@ -31,8 +33,10 @@ function Jobs () {
     getAllJobs();
   }, [])
 
+  /**  submitSearch receives a string and makes an AJAX request via our JoblyApi
+   *  class and saves the results to state or alerts with error.*/
   async function submitSearch(params) {
-    params = !params.title ? "" : params;
+    console.log('params in submitSearch', params)
     try {
       const res = await JoblyApi.getJobs(params);
       setAllJobs({
@@ -45,7 +49,6 @@ function Jobs () {
     }
   }
 
-  //map over all jobs creating Job getJobs
   if(allJobs.isLoading) return <h1> Loading...</h1>
 
   return (

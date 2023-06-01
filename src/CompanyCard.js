@@ -25,14 +25,14 @@ import "./CompanyCard.css";
 // :
 // "Sellers-Bryant"
 // numEmployees
-// :
+// :container
 // 369
 
 function CompanyCard({ company }) {
   const logoUrl = process.env.PUBLIC_URL + `${company.logoUrl}`;
 
   return (
-    <div className="container my-5 mx-auto text-left company-card bg-white">
+    <div className="col-sm-9 mx-auto container p-3 my-3 text-left company-card bg-white">
       <Link
         to={`/company/${company.handle}`}
         className="text-left text-dark"
@@ -42,7 +42,7 @@ function CompanyCard({ company }) {
         <p className="text-dark">{company.description}</p>
         {logoUrl !== "null" && (
           <div className="image-container">
-            <img src={logoUrl} alt="company-logo" className="company-logo" />
+            <img src={logoUrl} alt="company-logo" className="company-logo px-2 py-2" />
           </div>
         )}
       </Link>

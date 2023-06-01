@@ -40,19 +40,21 @@ class JoblyApi {
   /** Get details on a company by . */
 
   static async getCompany(handle) {
-    console.log('handle in getCompany API', handle)
     let res = await this.request(`companies/${handle}`);
     return res.company;
   }
 
   /** Get list of all companies */
   static async getCompanies(params) {
+    params = !params ? "" : { nameLike: params };
+    console.log("params in getCompanies", params);
     let res = await this.request(`companies`, params);
     return res.companies;
   }
 
   /** Get all jobs */
   static async getJobs(params) {
+    params = !params ? "" : { title: params };
     let res = await this.request(`jobs`, params);
     return res.jobs;
   }
