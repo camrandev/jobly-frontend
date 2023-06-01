@@ -27,9 +27,11 @@ function Profile({ handleSignup }) {
   }
 
   return (
-    <div className="col-4 mx-auto position-absolute top-50 start-50 translate-middle text-white bg-white">
-      <h2 className="text-white">Sign Up</h2>
-      <form onSubmit={handleSubmit}>
+    // <div className=" mx-auto position-absolute top-50 start-50 translate-middle container">
+      // <h1 className="text-white col" >Profile</h1>
+    <div className="col-4 col mx-auto position-absolute top-50 start-50 translate-middle text-black ">
+      <h2 className="text-white">Profile</h2>
+      <form onSubmit={handleSubmit} className="bg-white py-4 px-4">
       <fieldset disabled>
         <div class="mb-3">
           <label htmlFor="username" className="form-label">
@@ -88,6 +90,7 @@ function Profile({ handleSignup }) {
         <button className="btn btn-primary">Submit</button>
       </form>
     </div>
+    // </div>
   );
 }
 
