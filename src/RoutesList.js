@@ -4,6 +4,7 @@ import Homepage from "./Homepage";
 import CompaniesList from "./CompaniesList";
 import CompanyDetails from "./CompanyDetails";
 import Jobs from "./Jobs";
+import LoginForm from "./LoginForm";
 
 /** Holds all route element for the application
  *
@@ -25,6 +26,9 @@ function RoutesList() {
       <Route path="/company/:name" element={<CompanyDetails />} />
 
       <Route path="/jobs" element={<Jobs />} />
+      <Route path="/login" element={<LoginForm />} />
+      {/* <Route path="/signup" element={<SignupForm />} />
+      <Route path="/profile" element={<Profile />} /> */}
 
       <Route path="/*" element={<Navigate to="/" />} />
     </Routes>
