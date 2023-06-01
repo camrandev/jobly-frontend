@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import userContext from "./userContext";
 
 /** DESCRIPTION
  *
@@ -9,9 +10,11 @@ import React, { useState } from "react";
  * PARENT -> Profile -> {CHILDREN}
  */
 
-function Profile({ handleUpdate }) {
+function Profile({ update }) {
   //initial data to be set from the userObject in context
-  const [formData, setFormData] = useState({});
+  const { user } = useContext(userContext);
+  const [formData, setFormData] = useState({...user});
+
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -24,7 +27,10 @@ function Profile({ handleUpdate }) {
   function handleSubmit(evt) {
     console.log("hello from Profile");
     evt.preventDefault();
-    handleUpdate(formData);
+    const modifiedFormData = {...formData};
+    const userName = modifiedFormData.username;
+    delete modifiedFormData.username;
+    update(modifiedFormData, userName);
   }
 
   return (
@@ -37,6 +43,7 @@ function Profile({ handleUpdate }) {
               Username
             </label>
             <input
+              name="username"
               type="text"
               className="form-control"
               id="username"
@@ -51,6 +58,7 @@ function Profile({ handleUpdate }) {
             First name
           </label>
           <input
+            name="firstName"
             type="text"
             className="form-control"
             id="firstName"
@@ -64,6 +72,7 @@ function Profile({ handleUpdate }) {
             Last name
           </label>
           <input
+            name="lastName"
             type="text"
             className="form-control"
             id="lastName"
@@ -77,6 +86,7 @@ function Profile({ handleUpdate }) {
             Email
           </label>
           <input
+            name="email"
             type="email"
             className="form-control"
             id="email"

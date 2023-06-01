@@ -19,6 +19,7 @@ function Homepage() {
       <h4 className="text-center text-white">
         All the jobs in one, convenient place.
       </h4>
+      {user && <h2 className="text-white text-center">Welcome Back {user.firstName}!</h2>}
       {!user && (
         <div className=" d-flex justify-content-center ">
           <Link to="/login" className="btn btn-primary mr-5">

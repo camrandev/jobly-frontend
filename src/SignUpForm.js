@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import userContext from "./userContext";
+import { Navigate } from "react-router-dom";
 
 /** DESCRIPTION
  *
@@ -15,6 +17,7 @@ function SignUpForm({ signUp }) {
     hasError: false,
     errorMessages: [],
   });
+  const { user } = useContext(userContext);
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -30,6 +33,8 @@ function SignUpForm({ signUp }) {
     //TODO: account for errors here with try/catch
     signUp(formData);
   }
+
+  if (user) return <Navigate to="/" />;
 
   return (
     <div className="col-4 mx-auto position-absolute top-50 start-50 translate-middle text-white">
