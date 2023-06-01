@@ -36,6 +36,8 @@ function CompanyDetails() {
   }, []);
 
   if (company.isLoading) return <h1>loading....</h1>;
+  // add another conditional that checks state to see if theres erros, if so,
+  //show some UI
 
 
   return (

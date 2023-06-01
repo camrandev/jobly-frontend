@@ -8,7 +8,7 @@ import JoblyApi from "./api";
  * Props: None
  *
  * State:
- * - object {isLoading: bool, searchBy: str, companys:[]}
+ * - object {isLoading: bool, searchBy: str, companies:[]}
  *
  * Effects:
  * - after first render, send API request for list of companies
@@ -56,10 +56,12 @@ function CompaniesList() {
   if (data.isLoading) return <h1>Loading....</h1>;
 
   /** renderInfo receives nothing, returns instances of the CompanyCard component*/
+  //get rid of curlys and use parens
+  // better funciton name like renderCompanies
   function renderInfo() {
-    return data.companies.map((company) => {
-      return <CompanyCard key={company.handle} company={company} />;
-    });
+    return data.companies.map((company) => (
+       <CompanyCard key={company.handle} company={company} />
+    ));
   }
 
   return (

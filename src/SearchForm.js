@@ -10,6 +10,7 @@ import React, { useState } from "react";
  */
 
 //will take prop -> handleSubmit
+// get rid of object in state, use string
 function SearchForm({ submitSearch }) {
   const [formData, setFormData] = useState({
     searchTerm:"",

@@ -24,6 +24,7 @@ function Jobs () {
   /** Gets all the jobs via AJAX request then saves them to state*/
   useEffect(() => {
     async function getAllJobs(){
+      // jobs > res
       const res = await JoblyApi.getJobs();
       setAllJobs({
         isLoading: false,
@@ -38,14 +39,15 @@ function Jobs () {
   async function submitSearch(params) {
     console.log('params in submitSearch', params)
     try {
+            // jobs > res
       const res = await JoblyApi.getJobs(params);
       setAllJobs({
         isLoading: false,
         jobs: res,
       });
     } catch (err) {
+      // alert  < component
       window.alert("there was an error with your search");
-      return;
     }
   }
 
