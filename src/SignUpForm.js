@@ -2,13 +2,16 @@ import React, { useState, useEffect, useContext } from "react";
 import userContext from "./userContext";
 import { Navigate } from "react-router-dom";
 
-/** DESCRIPTION
+/** Sign up as a new user
  *
  * Props:
+ * - signUp()
  *
  * State:
+ * - formData {}
+ * - errors[]
  *
- * PARENT -> SignUpForm -> {CHILDREN}
+ * RoutesList -> SignUpForm
  */
 
 function SignUpForm({ signUp }) {

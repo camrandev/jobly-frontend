@@ -1,13 +1,17 @@
 import React, { useState, useContext } from "react";
 import userContext from "./userContext";
 
-/** DESCRIPTION
+/** View/edit info for the current user
  *
  * Props:
+ * - update()
  *
  * State:
+ * - formData
+ * - errors
  *
- * PARENT -> Profile -> {CHILDREN}
+ * RoutesList -> Profile
+ *
  */
 
 function Profile({ update }) {

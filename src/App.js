@@ -9,7 +9,16 @@ import JoblyApi from "./api";
 import jwt_decode from "jwt-decode";
 
 //TODO: use effect effect, watching token, when token changes, do something
-/** App returns our BrowserRouter with the NavBar component and the RoutesList component */
+/** App returns our BrowserRouter with the NavBar component and the RoutesList component
+ *
+ * Props: None
+ *
+ * state: token, user{}
+ *
+ * context: user{} stored in context for use throughout app
+ *
+ * App -> {Routeslist, NavBar}
+*/
 function App() {
   const [token, setToken] = useState(JoblyApi.token);
   const [user, setUser] = useState(null);
