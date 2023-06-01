@@ -2,13 +2,16 @@ import React, { useState, useContext } from "react";
 import userContext from "./userContext";
 import { Navigate } from "react-router-dom";
 
-/** DESCRIPTION
+/** Allows user to login
  *
  * Props:
+ * - login()
  *
  * State:
+ * -formData{}
+ * -errors[]
  *
- * PARENT -> LoginForm -> {CHILDREN}
+ * RoutesList -> LoginForm
  */
 
 function LoginForm({ login }) {

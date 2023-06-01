@@ -1,32 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./CompanyCard.css";
-// import { logo1, logo2, logo3 } from '../public/logos';
-/** DESCRIPTION
+
+/** presentational card that will show info for one company
  *
  * Props:
+ * -company{}
  *
  * State:
+ * -None
  *
- * PARENT -> CompanyCard -> {CHILDREN}
+ * CompanyDetails -> CompanyCard -> {Link}
  */
 
-// // Object
-// description
-// :
-// "Language discussion mission soon wait according executive. Financial say husband anyone money politics. Dinner action purpose mouth environment I white."
-// handle
-// :
-// "sellers-bryant"
-// logoUrl
-// :
-// "/logos/logo3.png"
-// name
-// :
-// "Sellers-Bryant"
-// numEmployees
-// :container
-// 369
 
 function CompanyCard({ company }) {
   const logoUrl = process.env.PUBLIC_URL + `${company.logoUrl}`;

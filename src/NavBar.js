@@ -2,13 +2,14 @@ import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import userContext from "./userContext";
 
-/** global navigation bar with NavLinks
+/** global navigation bar, renders different NavLinks depending on if
+ * current user is present
  *
  * Props: None
  *
  * State: None
  *
- * App -> JobCardList -> {NavLink*3}
+ * App -> JobCardList -> {NavLink*4 if logged in OR NavLink*2 if not}
  */
 function NavBar({ logout }) {
   const { user } = useContext(userContext);

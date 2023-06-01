@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 
-/** DESCRIPTION
+/** Reusable search form component
  *
  * Props:
+ * - submitSearch()
  *
  * State:
+ * - formData{}
  *
- * PARENT -> SearchForm -> {CHILDREN}
+ * Jobs -> SearchForm
  */
 
-//will take prop -> handleSubmit
-// get rid of object in state, use string
 function SearchForm({ submitSearch }) {
   const [formData, setFormData] = useState({
     searchTerm:"",

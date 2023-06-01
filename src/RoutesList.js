@@ -15,9 +15,9 @@ import Profile from "./Profile";
  * State: None
  *
  * App -> JobCardList ->
- * renders via Route Element: { Homepage, CompaniesList, CompanyDetails, Jobs}
+ * renders via Route Element:
+ * {Homepage, CompaniesList, CompanyDetails, Jobs, login, sign up}
  */
-/**Routes for CompaniesList, JobsList, Homepage, CompanyDetails */
 function RoutesList({login, signUp, update}) {
   return (
     <Routes>
