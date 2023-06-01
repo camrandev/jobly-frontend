@@ -32,12 +32,22 @@ function App() {
   }
 
   async function signUp(formData) {
-    console.log("formData in top level signUp function", formData)
+    console.log("formData in top level signUp function", formData);
     const newToken = await JoblyApi.signUpUser(formData);
     JoblyApi.token = newToken;
     setToken(JoblyApi.token);
   }
 
+  async function update(formData) {
+    const username = user.username;
+    delete formData.username;
+    delete formData.isAdmin;
+    delete formData.applications;
+
+    const userInfo = await JoblyApi.updateUser(formData, username);
+    console.log('userInfo in update', userInfo)
+    setUser({ ...userInfo });
+  }
   useEffect(() => {
     async function getUserData() {
       if (token !== "") {
@@ -50,18 +60,12 @@ function App() {
     getUserData();
   }, [token]);
 
-  async function update(modifiedFormData, username){
-    //pass on modifiedFormData
-    const userInfo = await JoblyApi.updateUser(modifiedFormData, username);
-    setUser({...userInfo});
-  }
-
   return (
     <div className="App">
       <userContext.Provider value={{ user }}>
         <BrowserRouter>
           <NavBar logout={logout} />
-          <RoutesList login={login} signUp={signUp} update={update}/>
+          <RoutesList login={login} signUp={signUp} update={update} />
         </BrowserRouter>
       </userContext.Provider>
     </div>

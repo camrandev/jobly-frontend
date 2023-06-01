@@ -28,6 +28,9 @@ function LoginForm({ login }) {
     login(formData);
   }
 
+  //TODO: handle errors
+  //TODO: show sucess messages
+
   if (user) return <Navigate to="/" />;
 
   return (

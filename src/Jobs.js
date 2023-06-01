@@ -22,10 +22,8 @@ function Jobs() {
     jobs: [],
   });
 
-  const [errors, setErrors] = useState({
-    hasError: false,
-    errorMessage: "",
-  });
+  const [errors, setErrors] = useState([]);
+
 
   /** Gets all the jobs via AJAX request then saves them to state*/
   useEffect(() => {

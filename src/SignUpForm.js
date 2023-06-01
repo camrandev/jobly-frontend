@@ -13,11 +13,13 @@ import { Navigate } from "react-router-dom";
 
 function SignUpForm({ signUp }) {
   const [formData, setFormData] = useState({});
-  const [errors, setErrors] =  useState({
-    hasError: false,
-    errorMessages: [],
-  });
+  const [errors, setErrors] = useState([]);
+
   const { user } = useContext(userContext);
+
+  function handleError(error) {
+    setErrors((prevErrors) => [...prevErrors, error.message]);
+  }
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -31,7 +33,11 @@ function SignUpForm({ signUp }) {
     console.log("hello from SignUpForm");
     evt.preventDefault();
     //TODO: account for errors here with try/catch
-    signUp(formData);
+    try {
+      signUp(formData);
+    } catch (error) {
+      handleError(error);
+    }
   }
 
   if (user) return <Navigate to="/" />;
@@ -110,7 +116,8 @@ function SignUpForm({ signUp }) {
             aria-describedby="emailHelp"
           />
         </div>
-        {/* conditionally render a div containing errors */}
+        {errors.length > 0 &&
+          errors.map((error, index) => <p key={index}>Error: {error}</p>)}
 
         <button className="btn btn-primary">Submit</button>
       </form>

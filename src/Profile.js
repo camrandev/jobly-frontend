@@ -13,8 +13,7 @@ import userContext from "./userContext";
 function Profile({ update }) {
   //initial data to be set from the userObject in context
   const { user } = useContext(userContext);
-  const [formData, setFormData] = useState({...user});
-
+  const [formData, setFormData] = useState({ ...user });
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -27,18 +26,19 @@ function Profile({ update }) {
   function handleSubmit(evt) {
     console.log("hello from Profile");
     evt.preventDefault();
-    const modifiedFormData = {...formData};
-    const userName = modifiedFormData.username;
-    delete modifiedFormData.username;
-    update(modifiedFormData, userName);
+
+    update(formData);
   }
+
+  //TODO: handle errors
+  //TODO: show sucess messages
 
   return (
     <div className="col-6 col mx-auto position-absolute top-50 start-50 translate-middle text-black ">
       <h2 className="text-white">Profile</h2>
       <form onSubmit={handleSubmit} className="bg-white py-4 px-4">
         <fieldset disabled>
-          <div class="mb-3">
+          <div className="mb-3">
             <label htmlFor="username" className="form-label">
               Username
             </label>
@@ -47,7 +47,7 @@ function Profile({ update }) {
               type="text"
               className="form-control"
               id="username"
-              value={formData?.username || ""}
+              value={user.username || ''}
               onChange={handleChange}
               aria-describedby="usernameHelp"
             />
