@@ -9,7 +9,8 @@ import React, { useState } from "react";
  * PARENT -> Profile -> {CHILDREN}
  */
 
-function Profile({ handleSignup }) {
+function Profile({ handleUpdate }) {
+  //initial data to be set from the userObject in context
   const [formData, setFormData] = useState({});
 
   function handleChange(evt) {
@@ -23,29 +24,27 @@ function Profile({ handleSignup }) {
   function handleSubmit(evt) {
     console.log("hello from Profile");
     evt.preventDefault();
-    handleSignup(formData);
+    handleUpdate(formData);
   }
 
   return (
-    // <div className=" mx-auto position-absolute top-50 start-50 translate-middle container">
-      // <h1 className="text-white col" >Profile</h1>
-    <div className="col-4 col mx-auto position-absolute top-50 start-50 translate-middle text-black ">
+    <div className="col-6 col mx-auto position-absolute top-50 start-50 translate-middle text-black ">
       <h2 className="text-white">Profile</h2>
       <form onSubmit={handleSubmit} className="bg-white py-4 px-4">
-      <fieldset disabled>
-        <div class="mb-3">
-          <label htmlFor="username" className="form-label">
-            Username
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="username"
-            value={formData?.username || ""}
-            onChange={handleChange}
-            aria-describedby="usernameHelp"
-          />
-        </div>
+        <fieldset disabled>
+          <div class="mb-3">
+            <label htmlFor="username" className="form-label">
+              Username
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="username"
+              value={formData?.username || ""}
+              onChange={handleChange}
+              aria-describedby="usernameHelp"
+            />
+          </div>
         </fieldset>
         <div className="mb-3">
           <label htmlFor="firstName" className="form-label">
@@ -90,7 +89,6 @@ function Profile({ handleSignup }) {
         <button className="btn btn-primary">Submit</button>
       </form>
     </div>
-    // </div>
   );
 }
 

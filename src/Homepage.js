@@ -18,12 +18,12 @@ function Homepage() {
 
       <div className=" d-flex justify-content-center ">
         {/* <div className="col border"> */}
-          <Link className="btn btn-primary mr-5">
+          <Link to="/login" className="btn btn-primary mr-5">
           Log in
           </Link>
         {/* </div>
         <div className="col"> */}
-          <Link className="btn btn-primary ml-5">
+          <Link to="/signup" className="btn btn-primary ml-5">
           Sign up
           </Link>
         {/* </div> */}

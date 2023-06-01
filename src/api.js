@@ -14,10 +14,15 @@ class JoblyApi {
   // Remember, the backend needs to be authorized with a token
   // We're providing a token you can use to interact with the backend API
   // DON'T MODIFY THIS TOKEN
-  static token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
-    "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
-    "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
+  static token = "";
+  // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
+  // "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
+  // "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
+
+  // static token =
+  // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
+  // "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
+  // "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
 
   static async request(endpoint, data = {}, method = "get") {
     console.debug("API Call:", endpoint, data, method);
@@ -47,6 +52,7 @@ class JoblyApi {
 
   /** Get list of all companies */
   static async getCompanies(params) {
+    //TODO: move out of API function
     params = !params ? "" : { nameLike: params };
     console.log("params in getCompanies", params);
     let res = await this.request(`companies`, params);
@@ -55,13 +61,17 @@ class JoblyApi {
 
   /** Get all jobs */
   static async getJobs(params) {
+    //TODO: move out of API function
     params = !params ? "" : { title: params };
     let res = await this.request(`jobs`, params);
     return res.jobs;
   }
-  /** Get jobs by search*/
 
-  /** Get all jobs from 1 company*/
+  static async login({ username, password }) {
+    const credentials = { username, password };
+    let res = await this.request(`auth/token`, credentials, "post");
+    return res.token
+  }
 }
 
 export default JoblyApi;

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import userContext from "./userContext";
 
 /** global navigation bar with NavLinks
  *
@@ -9,41 +10,46 @@ import { NavLink } from "react-router-dom";
  *
  * App -> JobCardList -> {NavLink*3}
  */
-function NavBar() {
+function NavBar({ logout }) {
+  const { user } = useContext(userContext);
 
-  function logout(){
-    //setState for user object back to nothing and State for token to empty string
+  function handeLogout() {
+    //TODO:write this function
+    console.log("testing context", user);
   }
 
   return (
     <nav className="navbar navbar-expand-sm navbar-light bg-light">
       <div className="container">
-        <NavLink to="/" className="navbar-brand">Jobly</NavLink>
-        { // if userObject.username ?
+        <NavLink to="/" className="navbar-brand">
+          Jobly
+        </NavLink>
+        {user ? (
           <div className="navbar-nav mr-auto">
-          <NavLink to="/companies" className="nav-link">
-            Companies
-          </NavLink>
-          <NavLink to="/jobs" className="nav-link">
-            Jobs
-          </NavLink>
-          <NavLink to="/profile" className="nav-link">
-            Profile
-          </NavLink>
-          <NavLink to="/" className="nav-link" onClick={logout}>
-            Log out
-          </NavLink>
-        </div>
-        }
+            <NavLink to="/companies" className="nav-link">
+              Companies
+            </NavLink>
+            <NavLink to="/jobs" className="nav-link">
+              Jobs
+            </NavLink>
+            <NavLink to="/profile" className="nav-link">
+              Profile
+            </NavLink>
+            <NavLink to="/" className="nav-link" onClick={handeLogout}>
+              Log out
+            </NavLink>
+          </div>
+        ) : (
+          <div className="navbar-nav mr-auto">
+            <NavLink to="/login" className="nav-link">
+              Login
+            </NavLink>
+            <NavLink to="/signup" className="nav-link">
+              Sign Up
+            </NavLink>
+          </div>
+        )}
       </div>
-      :
-      <NavLink to="/login" className="nav-link">
-        Login
-      </NavLink>
-      <NavLink to="/signup" className="nav-link">
-        Sign Up
-      </NavLink>
-
     </nav>
   );
 }
