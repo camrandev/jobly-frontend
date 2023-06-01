@@ -5,6 +5,7 @@ import CompaniesList from "./CompaniesList";
 import CompanyDetails from "./CompanyDetails";
 import Jobs from "./Jobs";
 import LoginForm from "./LoginForm";
+import SignUpForm from "./SignUpForm";
 
 /** Holds all route element for the application
  *
@@ -27,8 +28,8 @@ function RoutesList() {
 
       <Route path="/jobs" element={<Jobs />} />
       <Route path="/login" element={<LoginForm />} />
-      {/* <Route path="/signup" element={<SignupForm />} />
-      <Route path="/profile" element={<Profile />} /> */}
+      <Route path="/signup" element={<SignUpForm />} />
+      {/* <Route path="/profile" element={<Profile />} /> */}
 
       <Route path="/*" element={<Navigate to="/" />} />
     </Routes>

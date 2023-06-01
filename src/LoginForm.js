@@ -28,29 +28,29 @@ function LoginForm({handleLogin}) {
   }
 
   return (
-    <div className="col-4 mx-auto position-absolute top-50 start-50 translate-middle">
-      <h2 className="text-white">Sign Up</h2>
+    <div className="col-4 mx-auto position-absolute top-50 start-50 translate-middle text-white">
+      <h2>Login</h2>
       <form onSubmit={handleSubmit}>
-        <div class="mb-3">
-          <label htmlFor="username" class="form-label">
-            username
+        <div className="mb-3">
+          <label htmlFor="username" className="form-label">
+            Username
           </label>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="username"
             value={formData?.username}
             onChange={handleChange}
             aria-describedby="usernameHelp"
           />
         </div>
-        <div class="mb-3">
-          <label htmlFor="password" class="form-label">
-            password
+        <div className="mb-3">
+          <label htmlFor="password" className="form-label">
+            Password
           </label>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="password"
             value={formData?.password}
             onChange={handleChange}
@@ -58,7 +58,7 @@ function LoginForm({handleLogin}) {
           />
         </div>
 
-        <button class="btn btn-primary">
+        <button className="btn btn-primary">
           Submit
         </button>
       </form>
