@@ -31,6 +31,11 @@ function App() {
     //save to state and also to JoblyApi.token
   }
 
+  async function signUp(formData) {
+    console.log("formData in top level signUp function", formData)
+
+  }
+
   useEffect(() => {
     async function getUserData() {
       if (token !== "") {
@@ -48,7 +53,7 @@ function App() {
       <userContext.Provider value={{ user }}>
         <BrowserRouter>
           <NavBar logout={logout} />
-          <RoutesList login={login} />
+          <RoutesList login={login} signUp={signUp} />
         </BrowserRouter>
       </userContext.Provider>
     </div>

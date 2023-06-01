@@ -35,7 +35,7 @@ function NavBar({ logout }) {
               Profile
             </NavLink>
             <NavLink to="/" className="nav-link" onClick={handeLogout}>
-              Log out
+              Log out: {`${user.username}`}
             </NavLink>
           </div>
         ) : (

@@ -9,8 +9,12 @@ import React, { useState, useEffect } from "react";
  * PARENT -> SignUpForm -> {CHILDREN}
  */
 
-function SignUpForm({ handleSignup }) {
+function SignUpForm({ signUp }) {
   const [formData, setFormData] = useState({});
+  const [errors, setErrors] =  useState({
+    hasError: false,
+    errorMessages: [],
+  });
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -23,18 +27,20 @@ function SignUpForm({ handleSignup }) {
   function handleSubmit(evt) {
     console.log("hello from SignUpForm");
     evt.preventDefault();
-    handleSignup(formData);
+    //TODO: account for errors here with try/catch
+    signUp(formData);
   }
 
   return (
     <div className="col-4 mx-auto position-absolute top-50 start-50 translate-middle text-white">
       <h2 className="text-white">Sign Up</h2>
       <form onSubmit={handleSubmit}>
-        <div class="mb-3">
+        <div className="mb-3">
           <label htmlFor="username" className="form-label">
             Username
           </label>
           <input
+            name="username"
             type="text"
             className="form-control"
             id="username"
@@ -48,6 +54,7 @@ function SignUpForm({ handleSignup }) {
             Password
           </label>
           <input
+            name="password"
             type="text"
             className="form-control"
             id="password"
@@ -61,6 +68,7 @@ function SignUpForm({ handleSignup }) {
             First name
           </label>
           <input
+            name="firstName"
             type="text"
             className="form-control"
             id="firstName"
@@ -74,6 +82,7 @@ function SignUpForm({ handleSignup }) {
             Last name
           </label>
           <input
+            name="lastName"
             type="text"
             className="form-control"
             id="lastName"
@@ -87,6 +96,7 @@ function SignUpForm({ handleSignup }) {
             Email
           </label>
           <input
+            name="email"
             type="email"
             className="form-control"
             id="email"
@@ -95,6 +105,7 @@ function SignUpForm({ handleSignup }) {
             aria-describedby="emailHelp"
           />
         </div>
+        {/* conditionally render a div containing errors */}
 
         <button className="btn btn-primary">Submit</button>
       </form>
