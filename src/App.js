@@ -15,38 +15,40 @@ function App() {
   const [user, setUser] = useState(null);
   console.log("user is,", user);
 
-//TODO: state setter function to prop drill-> pass to routeslist, NavBar
-function logout() {
-  console.log('hi from logout')
-}
-
-async function login(formData) {
-  console.log('hi from login')
-  //pass form data to JoblyApi.login(formData)
-  const newToken = await JoblyApi.login(formData);
-  JoblyApi.token = newToken;
-  setToken(newToken);
-  //save to state and also to JoblyApi.token
-}
-
-useEffect(()=>{
-  async function getUserData(){
-    if (token !== ""){
-        const tokenPayload = jwt_decode(token);
-        console.log("decoded is", tokenPayload )
-        const userInfo = await JoblyApi.getUserInfo({username: `${tokenPayload}`});
-        setUser({...userInfo})
-      }
+  //TODO: state setter function to prop drill-> pass to routeslist, NavBar
+  function logout() {
+    JoblyApi.token = "";
+    setToken(JoblyApi.token);
+    setUser(null);
   }
-  getUserData();
-}, [token]);
+
+  async function login(formData) {
+    console.log("hi from login");
+    //pass form data to JoblyApi.login(formData)
+    const newToken = await JoblyApi.login(formData);
+    JoblyApi.token = newToken;
+    setToken(newToken);
+    //save to state and also to JoblyApi.token
+  }
+
+  useEffect(() => {
+    async function getUserData() {
+      if (token !== "") {
+        const { username } = jwt_decode(token);
+        console.log("username from token", username);
+        const userInfo = await JoblyApi.getUserInfo(username);
+        setUser({ ...userInfo });
+      }
+    }
+    getUserData();
+  }, [token]);
 
   return (
     <div className="App">
       <userContext.Provider value={{ user }}>
         <BrowserRouter>
-          <NavBar logout={logout}/>
-          <RoutesList login={login}/>
+          <NavBar logout={logout} />
+          <RoutesList login={login} />
         </BrowserRouter>
       </userContext.Provider>
     </div>

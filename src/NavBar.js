@@ -14,8 +14,7 @@ function NavBar({ logout }) {
   const { user } = useContext(userContext);
 
   function handeLogout() {
-    //TODO:write this function
-    console.log("testing context", user);
+    logout();
   }
 
   return (

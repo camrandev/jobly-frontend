@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
+import userContext from "./userContext";
+import { Navigate } from "react-router-dom";
 
 /** DESCRIPTION
  *
@@ -9,8 +11,9 @@ import React, { useState, useEffect } from "react";
  * PARENT -> LoginForm -> {CHILDREN}
  */
 
-function LoginForm({login}) {
+function LoginForm({ login }) {
   const [formData, setFormData] = useState({});
+  const { user } = useContext(userContext);
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -20,12 +23,12 @@ function LoginForm({login}) {
     }));
   }
 
-
   function handleSubmit(evt) {
-    console.log('hello from loginForm')
     evt.preventDefault();
     login(formData);
   }
+
+  if (user) return <Navigate to="/" />;
 
   return (
     <div className="col-4 mx-auto position-absolute top-50 start-50 translate-middle text-white">
@@ -60,9 +63,7 @@ function LoginForm({login}) {
           />
         </div>
 
-        <button className="btn btn-primary">
-          Submit
-        </button>
+        <button className="btn btn-primary">Submit</button>
       </form>
     </div>
   );
