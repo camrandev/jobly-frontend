@@ -18,7 +18,7 @@ import Profile from "./Profile";
  * renders via Route Element: { Homepage, CompaniesList, CompanyDetails, Jobs}
  */
 /**Routes for CompaniesList, JobsList, Homepage, CompanyDetails */
-function RoutesList() {
+function RoutesList({login}) {
   return (
     <Routes>
       <Route path="/" element={<Homepage />} />
@@ -28,7 +28,7 @@ function RoutesList() {
       <Route path="/company/:name" element={<CompanyDetails />} />
 
       <Route path="/jobs" element={<Jobs />} />
-      <Route path="/login" element={<LoginForm />} />
+      <Route path="/login" element={<LoginForm login={login} />} />
       <Route path="/signup" element={<SignUpForm />} />
       <Route path="/profile" element={<Profile />} />
 

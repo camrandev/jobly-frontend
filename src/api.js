@@ -14,7 +14,9 @@ class JoblyApi {
   // Remember, the backend needs to be authorized with a token
   // We're providing a token you can use to interact with the backend API
   // DON'T MODIFY THIS TOKEN
+
   static token = "";
+
   // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
   // "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
   // "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
@@ -71,6 +73,12 @@ class JoblyApi {
     const credentials = { username, password };
     let res = await this.request(`auth/token`, credentials, "post");
     return res.token
+  }
+
+  static async getUserInfo({username}) {
+    console.log("username is ", username);
+    let res = await this.request(`users/${username}`);
+    return res.user
   }
 }
 

@@ -9,7 +9,7 @@ import React, { useState, useEffect } from "react";
  * PARENT -> LoginForm -> {CHILDREN}
  */
 
-function LoginForm({handleLogin}) {
+function LoginForm({login}) {
   const [formData, setFormData] = useState({});
 
   function handleChange(evt) {
@@ -24,7 +24,7 @@ function LoginForm({handleLogin}) {
   function handleSubmit(evt) {
     console.log('hello from loginForm')
     evt.preventDefault();
-    handleLogin(formData);
+    login(formData);
   }
 
   return (
@@ -36,10 +36,11 @@ function LoginForm({handleLogin}) {
             Username
           </label>
           <input
+            name="username"
             type="text"
             className="form-control"
             id="username"
-            value={formData?.username}
+            value={formData?.username || ""}
             onChange={handleChange}
             aria-describedby="usernameHelp"
           />
@@ -49,10 +50,11 @@ function LoginForm({handleLogin}) {
             Password
           </label>
           <input
+            name="password"
             type="text"
             className="form-control"
             id="password"
-            value={formData?.password}
+            value={formData?.password || ""}
             onChange={handleChange}
             aria-describedby="passwordHelp"
           />
