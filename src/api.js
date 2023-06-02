@@ -16,7 +16,7 @@ class JoblyApi {
   // DON'T MODIFY THIS TOKEN
 
   // static token = "";
-  static token =  localStorage.getItem("token");
+  static token = "";
 
   /** testing token */
   // static token =
