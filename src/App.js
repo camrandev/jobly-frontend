@@ -19,18 +19,21 @@ import jwt_decode from "jwt-decode";
  * App -> {Routeslist, NavBar}
  */
 function App() {
-  const [token, setToken] = useState(JoblyApi.token);
+  // const [token, setToken] = useState(localStorage.getItem("token") || JoblyApi.token);
+  const [token, setToken] = useState("");
   const [user, setUser] = useState(null);
 
   /**logs the current user out */
   function logout() {
     JoblyApi.token = "";
     setToken(JoblyApi.token);
-    setUser(null);
+    // setUser(null); ADD TO USE EFFECT
+    // localStorage.removeItem("token");
   }
 
   /**logs a user in with proper credentials */
   async function login(formData) {
+    console.log("formData is", formData);
     const newToken = await JoblyApi.login(formData);
     // JoblyApi.token = newToken;
     setToken(newToken);
@@ -62,9 +65,15 @@ function App() {
       if (token !== "") {
         const { username } = jwt_decode(token);
         console.log("username from token", username);
+        console.log("token is", token)
+         JoblyApi.token = token
         const userInfo = await JoblyApi.getUserInfo(username);
-        JoblyApi.token = token
+        // JoblyApi.token = token
+        console.log("this is after the await JoblyApi.getUserInfo", userInfo)
+        // localStorage.setItem("token", token);
         setUser({ ...userInfo });
+      } else {
+        setUser(null);
       }
     }
     getUserData();

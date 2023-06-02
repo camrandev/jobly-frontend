@@ -16,7 +16,7 @@ import { Navigate } from "react-router-dom";
 
 function LoginForm({ login }) {
   //TODO: update form objects to be empty strings
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({username:"", password: ""});
   const { user } = useContext(userContext);
   const [errors, setErrors] = useState([]);
 
@@ -36,9 +36,11 @@ function LoginForm({ login }) {
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
+      console.log("form data is", formData)
       await login(formData);
       //TODO: going to use useNavigate Hook to send them to companies page
-      handleError([]);
+
+      setErrors([]);
     } catch (error) {
       handleError(error);
     }

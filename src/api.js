@@ -28,6 +28,7 @@ class JoblyApi {
 
     const url = `${BASE_URL}/${endpoint}`;
     const headers = { Authorization: `Bearer ${JoblyApi.token}` };
+    console.log("headers are", headers )
     const params = method === "get" ? data : {};
 
     try {
@@ -65,12 +66,12 @@ class JoblyApi {
   static async login({ username, password }) {
     const credentials = { username, password };
     let res = await this.request(`auth/token`, credentials, "post");
+    console.log("token is ",res.token)
     return res.token;
   }
 
   /**gets user info object from API */
   static async getUserInfo(username) {
-    // console.log("username is ", username);
     let res = await this.request(`users/${username}`);
     return res.user;
   }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import userContext from "./userContext";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 /** Sign up as a new user
  *
@@ -38,7 +38,7 @@ function SignUpForm({ signUp }) {
     evt.preventDefault();
     try {
       await signUp(formData);
-      handleError([]);
+      setErrors([]);
     } catch (error) {
       handleError(error);
     }
