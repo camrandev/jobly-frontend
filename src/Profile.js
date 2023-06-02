@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { Navigate } from "react-router-dom";
 import userContext from "./userContext";
 
 /** View/edit info for the current user
@@ -14,11 +15,15 @@ import userContext from "./userContext";
  *
  */
 
+//NOTE: better to be explicit and pass in user?
 function Profile({ update }) {
   const { user } = useContext(userContext);
+  //TODO: destructure needed fields from user object
   const [formData, setFormData] = useState({ ...user });
   const [errors, setErrors] = useState([]);
   const [updated, setUpdated] = useState(false);
+
+  if (!user) return <Navigate to="/" />;
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -33,7 +38,7 @@ function Profile({ update }) {
     setErrors([...error]);
   }
 
-  //TODO: clean the form here
+  //NOTE: case to be made that this form should handle APIrequest directly
   async function handleSubmit(evt) {
     console.log("hello from Profile");
     evt.preventDefault();
@@ -64,6 +69,8 @@ function Profile({ update }) {
               value={user.username || ""}
               onChange={handleChange}
               aria-describedby="usernameHelp"
+              aria-required="true"
+              required
             />
           </div>
         </fieldset>
@@ -79,6 +86,8 @@ function Profile({ update }) {
             value={formData?.firstName || ""}
             onChange={handleChange}
             aria-describedby="firstNameHelp"
+            aria-required="true"
+            required
           />
         </div>
         <div className="mb-3">
@@ -93,6 +102,8 @@ function Profile({ update }) {
             value={formData?.lastName || ""}
             onChange={handleChange}
             aria-describedby="lastNameHelp"
+            aria-required="true"
+            required
           />
         </div>
         <div className="mb-3">
@@ -104,9 +115,12 @@ function Profile({ update }) {
             type="email"
             className="form-control"
             id="email"
+            //TODO: remove optional changing, conditionals
             value={formData?.email || ""}
             onChange={handleChange}
             aria-describedby="emailHelp"
+            aria-required="true"
+            required
           />
         </div>
         {errors.length > 0 && (

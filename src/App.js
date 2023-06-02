@@ -19,13 +19,18 @@ import jwt_decode from "jwt-decode";
  * App -> {Routeslist, NavBar}
  */
 function App() {
-  // const [token, setToken] = useState(localStorage.getItem("token") || JoblyApi.token);
-  const [token, setToken] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [token, setToken] = useState(
+    localStorage.getItem("token") || JoblyApi.token
+  );
+  console.log("token from App", token);
   const [user, setUser] = useState(null);
 
   /**logs the current user out */
   function logout() {
     JoblyApi.token = "";
+    localStorage.removeItem("token");
+    setIsLoading(false);
     setToken(JoblyApi.token);
     // setUser(null); ADD TO USE EFFECT
     // localStorage.removeItem("token");
@@ -65,19 +70,19 @@ function App() {
       if (token !== "") {
         const { username } = jwt_decode(token);
         console.log("username from token", username);
-        console.log("token is", token)
-         JoblyApi.token = token
+        localStorage.setItem("token", token);
+        JoblyApi.token = token;
         const userInfo = await JoblyApi.getUserInfo(username);
-        // JoblyApi.token = token
-        console.log("this is after the await JoblyApi.getUserInfo", userInfo)
-        // localStorage.setItem("token", token);
+        setIsLoading(false);
         setUser({ ...userInfo });
       } else {
-        setUser(null);
+        setIsLoading(false);
       }
     }
     getUserData();
   }, [token]);
+
+  if (isLoading) return <h1 className="position-absolute top-50 start-50 text-white">Loading....</h1>;
 
   return (
     <div className="App">

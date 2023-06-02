@@ -44,7 +44,7 @@ function SignUpForm({ signUp }) {
     }
   }
 
-  if (user) return <Navigate to="/" />;
+  if (user) return <Navigate to="/companies" />;
 
   return (
     <div className="col-4 mx-auto position-absolute top-50 start-50 translate-middle text-white">
@@ -62,6 +62,8 @@ function SignUpForm({ signUp }) {
             value={formData?.username || ""}
             onChange={handleChange}
             aria-describedby="usernameHelp"
+            aria-required="true"
+            required
           />
         </div>
         <div className="mb-3">
@@ -70,12 +72,14 @@ function SignUpForm({ signUp }) {
           </label>
           <input
             name="password"
-            type="text"
+            type="password"
             className="form-control"
             id="password"
             value={formData?.password || ""}
             onChange={handleChange}
             aria-describedby="passwordHelp"
+            aria-required="true"
+            required
           />
         </div>
         <div className="mb-3">
@@ -90,6 +94,8 @@ function SignUpForm({ signUp }) {
             value={formData?.firstName || ""}
             onChange={handleChange}
             aria-describedby="firstNameHelp"
+            aria-required="true"
+            required
           />
         </div>
         <div className="mb-3">
@@ -104,6 +110,8 @@ function SignUpForm({ signUp }) {
             value={formData?.lastName || ""}
             onChange={handleChange}
             aria-describedby="lastNameHelp"
+            aria-required="true"
+            required
           />
         </div>
         <div className="mb-3">
@@ -118,6 +126,8 @@ function SignUpForm({ signUp }) {
             value={formData?.email || ""}
             onChange={handleChange}
             aria-describedby="emailHelp"
+            aria-required="true"
+            required
           />
         </div>
         {errors.length > 0 && (

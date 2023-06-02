@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Navigate } from "react-router-dom";
 import SearchForm from "./SearchForm";
 import JobCardList from "./JobCardList";
 import JoblyApi from "./api";
+import userContext from "./userContext";
 
 /** DESCRIPTION
 *Jobs uses useState and useEffect to make an AJAX request for all the jobs and
@@ -23,6 +25,9 @@ function Jobs() {
 
   const [errors, setErrors] = useState([]);
 
+  const { user } = useContext(userContext);
+
+
   /** Gets all the jobs via AJAX request then saves them to state*/
   useEffect(() => {
     async function getAllJobs() {
@@ -35,6 +40,7 @@ function Jobs() {
     getAllJobs();
   }, []);
 
+  if (!user) return <Navigate to="/" />;
   /**  submitSearch receives a string and makes an AJAX request via our JoblyApi
    *  class and saves the results to state or alerts with error.*/
   async function submitSearch(params) {

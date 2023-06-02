@@ -25,6 +25,8 @@ function RoutesList({login, signUp, update}) {
 
   return (
     <Routes>
+      {/* //TODO: easier to protect routes here -> wrap route els with
+      current user conditional  */}
       <Route path="/" element={<Homepage />} />
       <Route path="/login" element={<LoginForm login={login} />} />
       <Route path="/signup" element={<SignUpForm signUp={signUp}/>} />
