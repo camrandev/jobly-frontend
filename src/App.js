@@ -32,8 +32,7 @@ function App() {
     localStorage.removeItem("token");
     setIsLoading(false);
     setToken(JoblyApi.token);
-    // setUser(null); ADD TO USE EFFECT
-    // localStorage.removeItem("token");
+    setUser(null);
   }
 
   /**logs a user in with proper credentials */
@@ -69,7 +68,6 @@ function App() {
     async function getUserData() {
       if (token !== "") {
         const { username } = jwt_decode(token);
-        console.log("username from token", username);
         localStorage.setItem("token", token);
         JoblyApi.token = token;
         const userInfo = await JoblyApi.getUserInfo(username);

@@ -15,7 +15,6 @@ import { Navigate } from "react-router-dom";
  */
 
 function LoginForm({ login }) {
-  //TODO: update form objects to be empty strings
   const [formData, setFormData] = useState({username:"", password: ""});
   const { user } = useContext(userContext);
   const [errors, setErrors] = useState([]);
@@ -42,7 +41,6 @@ function LoginForm({ login }) {
     } catch (error) {
       handleError(error);
     }
-    // return <Navigate to="/companies" />
   }
 
   if (user) return <Navigate to="/companies" />;

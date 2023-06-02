@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Homepage from "./Homepage";
 import CompaniesList from "./CompaniesList";
@@ -25,8 +25,6 @@ function RoutesList({login, signUp, update}) {
 
   return (
     <Routes>
-      {/* //TODO: easier to protect routes here -> wrap route els with
-      current user conditional  */}
       <Route path="/" element={<Homepage />} />
       <Route path="/login" element={<LoginForm login={login} />} />
       <Route path="/signup" element={<SignUpForm signUp={signUp}/>} />

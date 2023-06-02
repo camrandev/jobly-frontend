@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import CompanyCard from "./CompanyCard";
 import SearchForm from "./SearchForm";
 import JoblyApi from "./api";
-import userContext from "./userContext";
 
 /** Renders a list of company cards, and a search form
  *
@@ -24,9 +23,6 @@ function CompaniesList() {
     companies: [],
   });
 
-  const { user } = useContext(userContext);
-
-
   /**
    * get an array of all the companies, then updates data state
   */
@@ -43,7 +39,6 @@ function CompaniesList() {
     getCompanies();
   }, []);
 
-  if (!user) return <Navigate to="/" />;
   /** Function submitSearch receives string and makes AJAX request using static
    *  method from our JoblyApi class, then sets State or catches error and alerts*/
   async function submitSearch(params) {

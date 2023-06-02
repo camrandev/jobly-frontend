@@ -66,7 +66,6 @@ class JoblyApi {
   static async login({ username, password }) {
     const credentials = { username, password };
     let res = await this.request(`auth/token`, credentials, "post");
-    console.log("token is ",res.token)
     return res.token;
   }
 
@@ -79,16 +78,12 @@ class JoblyApi {
   /**creates a new user and returns a JWT Token */
   static async signUpUser(user) {
     let res = await this.request(`auth/register`, user, "post");
-    // console.log("res.token is", res.token)
     return res.token;
   }
 
   /**updates user info and returns the updated user info object */
   static async updateUser(userInfo, username) {
-    console.log("userInfo, username is>>", userInfo, username);
     let res = await this.request(`users/${username}`, userInfo, "patch");
-    console.log("res is", res);
-    // console.log("res.user is", res.user);
     return res.user;
   }
 }

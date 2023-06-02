@@ -15,15 +15,15 @@ import userContext from "./userContext";
  *
  */
 
-//NOTE: better to be explicit and pass in user?
 function Profile({ update }) {
   const { user } = useContext(userContext);
-  //TODO: destructure needed fields from user object
-  const [formData, setFormData] = useState({ ...user });
+  const [formData, setFormData] = useState({username: user.username,
+                                            firstName: user.firstName,
+                                            lastName:  user.lastName,
+                                            email: user.email});
   const [errors, setErrors] = useState([]);
   const [updated, setUpdated] = useState(false);
 
-  if (!user) return <Navigate to="/" />;
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -40,7 +40,6 @@ function Profile({ update }) {
 
   //NOTE: case to be made that this form should handle APIrequest directly
   async function handleSubmit(evt) {
-    console.log("hello from Profile");
     evt.preventDefault();
     try {
       await update(formData);
