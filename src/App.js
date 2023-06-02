@@ -7,6 +7,8 @@ import backgroundImage from "./background-for-jobly.png";
 import userContext from "./userContext";
 import JoblyApi from "./api";
 import jwt_decode from "jwt-decode";
+import useTokenLocalStorage from './useTokenLocalStorage';
+
 
 /** App returns our BrowserRouter with the NavBar component and the RoutesList component
  *
@@ -20,46 +22,31 @@ import jwt_decode from "jwt-decode";
  */
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [token, setToken] = useState(
-    localStorage.getItem("token") || JoblyApi.token
-  );
-  console.log("token from App", token);
+  const [token, setToken] = useTokenLocalStorage();
   const [user, setUser] = useState(null);
 
   /**logs the current user out */
   function logout() {
-    JoblyApi.token = "";
-    localStorage.removeItem("token");
     setIsLoading(false);
-    setToken(JoblyApi.token);
+    setToken("");
     setUser(null);
   }
 
   /**logs a user in with proper credentials */
   async function login(formData) {
-    console.log("formData is", formData);
     const newToken = await JoblyApi.login(formData);
-    // JoblyApi.token = newToken;
     setToken(newToken);
   }
 
   /**allows a new user to sign up */
   async function signUp(formData) {
-    console.log("formData in top level signUp function", formData);
     const newToken = await JoblyApi.signUpUser(formData);
-    // JoblyApi.token = newToken;
     setToken(newToken);
   }
 
   /**allows a user to update their own info when logged in */
-  async function update(formData) {
-    const username = user.username;
-    delete formData.username;
-    delete formData.isAdmin;
-    delete formData.applications;
-
-    const userInfo = await JoblyApi.updateUser(formData, username);
-    console.log("userInfo in update", userInfo);
+  async function update({username, lastName, email, firstName}) {
+    const userInfo = await JoblyApi.updateUser({lastName, email, firstName}, username);
     setUser({ ...userInfo });
   }
 
@@ -68,8 +55,6 @@ function App() {
     async function getUserData() {
       if (token !== "") {
         const { username } = jwt_decode(token);
-        localStorage.setItem("token", token);
-        JoblyApi.token = token;
         const userInfo = await JoblyApi.getUserInfo(username);
         setIsLoading(false);
         setUser({ ...userInfo });

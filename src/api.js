@@ -15,7 +15,8 @@ class JoblyApi {
   // We're providing a token you can use to interact with the backend API
   // DON'T MODIFY THIS TOKEN
 
-  static token = "";
+  // static token = "";
+  static token =  localStorage.getItem("token");
 
   /** testing token */
   // static token =
@@ -24,6 +25,7 @@ class JoblyApi {
   // "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
 
   static async request(endpoint, data = {}, method = "get") {
+    console.log("token in JoblyAPI is", JoblyApi.token);
     console.debug("API Call:", endpoint, data, method);
 
     const url = `${BASE_URL}/${endpoint}`;
