@@ -17,10 +17,7 @@ class JoblyApi {
 
   static token = "";
 
-  // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
-  // "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
-  // "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
-
+  /** testing token */
   // static token =
   // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
   // "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
@@ -54,46 +51,44 @@ class JoblyApi {
 
   /** Get list of all companies */
   static async getCompanies(params) {
-    //TODO: move out of API function
-    params = !params ? "" : { nameLike: params };
-    console.log("params in getCompanies", params);
     let res = await this.request(`companies`, params);
     return res.companies;
   }
 
   /** Get all jobs */
   static async getJobs(params) {
-    //TODO: move out of API function
-    params = !params ? "" : { title: params };
     let res = await this.request(`jobs`, params);
     return res.jobs;
   }
 
+  /**gets JWT token from API with proper credentials */
   static async login({ username, password }) {
     const credentials = { username, password };
     let res = await this.request(`auth/token`, credentials, "post");
-    return res.token
+    return res.token;
   }
 
+  /**gets user info object from API */
   static async getUserInfo(username) {
     // console.log("username is ", username);
     let res = await this.request(`users/${username}`);
-    return res.user
+    return res.user;
   }
 
-/**takes a user object */
+  /**creates a new user and returns a JWT Token */
   static async signUpUser(user) {
     let res = await this.request(`auth/register`, user, "post");
     // console.log("res.token is", res.token)
-    return res.token
+    return res.token;
   }
 
+  /**updates user info and returns the updated user info object */
   static async updateUser(userInfo, username) {
-    console.log("userInfo, username is>>", userInfo, username)
+    console.log("userInfo, username is>>", userInfo, username);
     let res = await this.request(`users/${username}`, userInfo, "patch");
-    console.log("res is", res)
+    console.log("res is", res);
     // console.log("res.user is", res.user);
-    return res.user
+    return res.user;
   }
 }
 

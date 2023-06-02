@@ -18,8 +18,7 @@ function Profile({ update }) {
   const { user } = useContext(userContext);
   const [formData, setFormData] = useState({ ...user });
   const [errors, setErrors] = useState([]);
-  const [updated, setUpdated ]= useState(false);
-
+  const [updated, setUpdated] = useState(false);
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -30,7 +29,7 @@ function Profile({ update }) {
   }
 
   function handleError(error) {
-    console.log("error in handleErrors is...", error)
+    console.log("error in handleErrors is...", error);
     setErrors([...error]);
   }
 
@@ -40,11 +39,10 @@ function Profile({ update }) {
     try {
       await update(formData);
       handleError([]);
-      setUpdated(true)
-    } catch(error){
+      setUpdated(true);
+    } catch (error) {
       handleError(error);
     }
-
   }
 
   return (
@@ -61,7 +59,7 @@ function Profile({ update }) {
               type="text"
               className="form-control"
               id="username"
-              value={user.username || ''}
+              value={user.username || ""}
               onChange={handleChange}
               aria-describedby="usernameHelp"
             />
@@ -109,10 +107,15 @@ function Profile({ update }) {
             aria-describedby="emailHelp"
           />
         </div>
-        {errors.length > 0 && <div className="alert alert-danger">
-          {errors.map((error, index) => <p key={index} className="mb-0 small">Error: {error}</p>)}
+        {errors.length > 0 && (
+          <div className="alert alert-danger">
+            {errors.map((error, index) => (
+              <p key={index} className="mb-0 small">
+                Error: {error}
+              </p>
+            ))}
           </div>
-        }
+        )}
         {updated && <p className="alert alert-success">Updated Successfully</p>}
         <button className="btn btn-primary">Submit</button>
       </form>

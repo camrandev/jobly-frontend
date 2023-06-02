@@ -1,15 +1,15 @@
 import React from "react";
 // { useState, useEffect }
 
-/** DESCRIPTION
+/** presentational job card
  *
- * Props:
+ * Props: job {}
  *
- * State:
+ * State: None
  *
- * PARENT -> JobCard -> {CHILDREN}
+ * {JobCardList} -> JobCard
  */
-// {id: 119, title: 'Oceanographer', salary: null, equity: '0.097'}
+
 function JobCard({ job }) {
   return (
     <div className="col-sm-9 mx-auto my-3">
