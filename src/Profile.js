@@ -15,7 +15,6 @@ import userContext from "./userContext";
  */
 
 function Profile({ update }) {
-  //initial data to be set from the userObject in context
   const { user } = useContext(userContext);
   const [formData, setFormData] = useState({ ...user });
   const [errors, setErrors] = useState([]);
@@ -47,9 +46,6 @@ function Profile({ update }) {
     }
 
   }
-
-  //TODO: handle errors
-  //TODO: show sucess messages
 
   return (
     <div className="col-6 col mx-auto position-absolute top-50 start-50 translate-middle text-black ">

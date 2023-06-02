@@ -43,7 +43,6 @@ function Jobs() {
   async function submitSearch(params) {
     console.log("params in submitSearch", params);
     try {
-      // jobs > res
       const jobs = await JoblyApi.getJobs(params);
       setAllJobs({
         isLoading: false,
@@ -57,9 +56,7 @@ function Jobs() {
     }
   }
 
-  //TODO: loading screen component
   if (allJobs.isLoading) return <h1> Loading...</h1>;
-  //TODO: error screen component
   if (errors.errorMessage) return <h1>error: {errors.errorMessage}</h1>;
 
   return (
@@ -67,6 +64,7 @@ function Jobs() {
       <div>
         <SearchForm submitSearch={submitSearch} />
         <JobCardList jobs={allJobs.jobs} />
+        {allJobs.jobs.length < 1 && <h3 className="text-white col-6 col mx-auto start-50 translate-middle">Sorry no results were found!</h3>}
       </div>
     </div>
   );
