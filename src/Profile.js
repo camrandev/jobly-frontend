@@ -15,8 +15,10 @@ import userContext from "./userContext";
  *
  */
 
+//NOTE: better to be explicit and pass in user?
 function Profile({ update }) {
   const { user } = useContext(userContext);
+  //TODO: destructure needed fields from user object
   const [formData, setFormData] = useState({ ...user });
   const [errors, setErrors] = useState([]);
   const [updated, setUpdated] = useState(false);
@@ -113,6 +115,7 @@ function Profile({ update }) {
             type="email"
             className="form-control"
             id="email"
+            //TODO: remove optional changing, conditionals
             value={formData?.email || ""}
             onChange={handleChange}
             aria-describedby="emailHelp"

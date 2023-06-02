@@ -21,6 +21,8 @@ import Profile from "./Profile";
 function RoutesList({login, signUp, update}) {
   return (
     <Routes>
+      {/* //TODO: easier to protect routes here -> wrap route els with
+      current user conditional  */}
       <Route path="/" element={<Homepage />} />
 
       <Route path="/companies" element={<CompaniesList />} />
