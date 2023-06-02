@@ -14,7 +14,7 @@ import userContext from "./userContext";
 function NavBar({ logout }) {
   const { user } = useContext(userContext);
 
-  function handeLogout() {
+  function handleLogout() {
     logout();
   }
 
@@ -35,7 +35,7 @@ function NavBar({ logout }) {
             <NavLink to="/profile" className="nav-link">
               Profile
             </NavLink>
-            <NavLink to="/" className="nav-link" onClick={handeLogout}>
+            <NavLink to="/" className="nav-link" onClick={handleLogout}>
               Log out: {`${user.username}`}
             </NavLink>
           </div>

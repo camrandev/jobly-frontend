@@ -15,6 +15,7 @@ import { Navigate } from "react-router-dom";
  */
 
 function LoginForm({ login }) {
+  //TODO: update form objects to be empty strings
   const [formData, setFormData] = useState({});
   const { user } = useContext(userContext);
   const [errors, setErrors] = useState([]);
@@ -36,14 +37,17 @@ function LoginForm({ login }) {
     evt.preventDefault();
     try {
       await login(formData);
+      //TODO: going to use useNavigate Hook to send them to companies page
       handleError([]);
     } catch (error) {
       handleError(error);
     }
   }
 
+  //TODO: can get rid of context due to above change, repeat this pattern in signUpForm
   if (user) return <Navigate to="/" />;
 
+  //TODO: add required to all form fields
   return (
     <div className="col-4 mx-auto position-absolute top-50 start-50 translate-middle text-white">
       <h2>Login</h2>
@@ -68,7 +72,7 @@ function LoginForm({ login }) {
           </label>
           <input
             name="password"
-            type="text"
+            type="password" //TODO: make this change across forms
             className="form-control"
             id="password"
             value={formData?.password || ""}
@@ -76,6 +80,8 @@ function LoginForm({ login }) {
             aria-describedby="passwordHelp"
           />
         </div>
+
+        {/* TODO: refactor this into seperate alert component */}
         {errors.length > 0 && (
           <div className="alert alert-danger">
             {errors.map((error, index) => (

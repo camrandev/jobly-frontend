@@ -61,7 +61,11 @@ function Jobs() {
       <div>
         <SearchForm submitSearch={submitSearch} />
         <JobCardList jobs={allJobs.jobs} />
-        {allJobs.jobs.length < 1 && <h3 className="text-white col-6 col mx-auto start-50 translate-middle">Sorry no results were found!</h3>}
+        {allJobs.jobs.length < 1 && (
+          <h3 className="text-white col-6 col mx-auto position-absolute start-50 translate-middle">
+            Sorry no results were found!
+          </h3>
+        )}
       </div>
     </div>
   );

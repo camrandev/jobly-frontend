@@ -33,16 +33,18 @@ function Profile({ update }) {
     setErrors([...error]);
   }
 
+  //TODO: clean the form here
   async function handleSubmit(evt) {
     console.log("hello from Profile");
     evt.preventDefault();
     try {
       await update(formData);
-      handleError([]);
-      setUpdated(true);
     } catch (error) {
       handleError(error);
+      return;
     }
+    handleError([]);
+    setUpdated(true);
   }
 
   return (

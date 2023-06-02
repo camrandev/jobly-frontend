@@ -32,7 +32,7 @@ function App() {
   /**logs a user in with proper credentials */
   async function login(formData) {
     const newToken = await JoblyApi.login(formData);
-    JoblyApi.token = newToken;
+    // JoblyApi.token = newToken;
     setToken(newToken);
   }
 
@@ -40,8 +40,8 @@ function App() {
   async function signUp(formData) {
     console.log("formData in top level signUp function", formData);
     const newToken = await JoblyApi.signUpUser(formData);
-    JoblyApi.token = newToken;
-    setToken(JoblyApi.token);
+    // JoblyApi.token = newToken;
+    setToken(newToken);
   }
 
   /**allows a user to update their own info when logged in */
@@ -63,6 +63,7 @@ function App() {
         const { username } = jwt_decode(token);
         console.log("username from token", username);
         const userInfo = await JoblyApi.getUserInfo(username);
+        JoblyApi.token = token
         setUser({ ...userInfo });
       }
     }

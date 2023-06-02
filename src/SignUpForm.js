@@ -14,6 +14,7 @@ import { Navigate } from "react-router-dom";
  * RoutesList -> SignUpForm
  */
 
+//TODO: see feedback in LoginForm
 function SignUpForm({ signUp }) {
   const [formData, setFormData] = useState({});
   const [errors, setErrors] = useState([]);
@@ -34,7 +35,6 @@ function SignUpForm({ signUp }) {
   }
 
   async function handleSubmit(evt) {
-    console.log("hello from SignUpForm");
     evt.preventDefault();
     try {
       await signUp(formData);
