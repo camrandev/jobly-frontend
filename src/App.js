@@ -62,8 +62,8 @@ function App() {
       if (token !== "") {
         const { username } = jwt_decode(token);
         console.log("username from token", username);
-        const userInfo = await JoblyApi.getUserInfo(username);
         JoblyApi.token = token
+        const userInfo = await JoblyApi.getUserInfo(username);
         setUser({ ...userInfo });
       }
     }
