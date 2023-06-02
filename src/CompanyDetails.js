@@ -3,7 +3,7 @@ import JobCardList from "./JobCardList";
 import { useParams } from "react-router-dom";
 import JoblyApi from "./api";
 
-/** DESCRIPTION
+/** Logical component that holds list of all jobs for a given company
  *
  * Props: none
  *
@@ -13,16 +13,17 @@ import JoblyApi from "./api";
  * Effects:
  * - after first render, send API request for company by name
  *
- * PARENT -> CompanyDetails -> {JobCardList}
+ * RoutesList -> CompanyDetails -> {JobCardList}
  */
 
 function CompanyDetails() {
-  const { name } = useParams();
-
   const [company, setCompany] = useState({
     isLoading: true,
     data: null,
   });
+
+  const { name } = useParams();
+
   /**  after first render, send API request for company by name, setState*/
   useEffect(() => {
     async function getCompany() {
@@ -38,7 +39,6 @@ function CompanyDetails() {
   if (company.isLoading) return <h1>loading....</h1>;
   // add another conditional that checks state to see if theres erros, if so,
   //show some UI
-
 
   return (
     <div className="container my-5 mx-auto text-left">

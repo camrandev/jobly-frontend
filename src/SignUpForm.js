@@ -17,12 +17,11 @@ import { Navigate } from "react-router-dom";
 function SignUpForm({ signUp }) {
   const [formData, setFormData] = useState({});
   const [errors, setErrors] = useState([]);
-  console.log("errors state is", errors)
 
   const { user } = useContext(userContext);
 
   function handleError(error) {
-    console.log("error in handleErrors is...", error)
+    console.log("error in handleErrors is...", error);
     setErrors([...error]);
   }
 
@@ -37,7 +36,6 @@ function SignUpForm({ signUp }) {
   async function handleSubmit(evt) {
     console.log("hello from SignUpForm");
     evt.preventDefault();
-    //TODO: account for errors here with try/catch
     try {
       await signUp(formData);
       handleError([]);
@@ -122,10 +120,15 @@ function SignUpForm({ signUp }) {
             aria-describedby="emailHelp"
           />
         </div>
-        {errors.length > 0 && <div className="alert alert-danger">
-          {errors.map((error, index) => <p key={index} className="mb-0 small">Error: {error}</p>)}
+        {errors.length > 0 && (
+          <div className="alert alert-danger">
+            {errors.map((error, index) => (
+              <p key={index} className="mb-0 small">
+                Error: {error}
+              </p>
+            ))}
           </div>
-        }
+        )}
         <button className="btn btn-primary">Submit</button>
       </form>
     </div>

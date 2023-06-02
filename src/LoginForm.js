@@ -19,7 +19,6 @@ function LoginForm({ login }) {
   const { user } = useContext(userContext);
   const [errors, setErrors] = useState([]);
 
-
   function handleChange(evt) {
     const { name, value } = evt.target;
     setFormData((fData) => ({
@@ -29,7 +28,7 @@ function LoginForm({ login }) {
   }
 
   function handleError(error) {
-    console.log("error in handleErrors is...", error)
+    console.log("error in handleErrors is...", error);
     setErrors([...error]);
   }
 
@@ -38,13 +37,10 @@ function LoginForm({ login }) {
     try {
       await login(formData);
       handleError([]);
-    } catch (error){
+    } catch (error) {
       handleError(error);
     }
   }
-
-  //TODO: handle errors
-  //TODO: show sucess messages
 
   if (user) return <Navigate to="/" />;
 
@@ -80,10 +76,15 @@ function LoginForm({ login }) {
             aria-describedby="passwordHelp"
           />
         </div>
-        {errors.length > 0 && <div className="alert alert-danger">
-          {errors.map((error, index) => <p key={index} className="mb-0 small">Error: {error}</p>)}
+        {errors.length > 0 && (
+          <div className="alert alert-danger">
+            {errors.map((error, index) => (
+              <p key={index} className="mb-0 small">
+                Error: {error}
+              </p>
+            ))}
           </div>
-        }
+        )}
         <button className="btn btn-primary">Submit</button>
       </form>
     </div>

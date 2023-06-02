@@ -23,8 +23,7 @@ function CompaniesList() {
   });
 
   /**
-   * get an array of all the companies,
-    then sets State
+   * get an array of all the companies, then updates data state
    */
   async function getCompanies() {
     const companies = await JoblyApi.getCompanies();
@@ -33,6 +32,7 @@ function CompaniesList() {
       companies: companies,
     });
   }
+
   /** useEffect runs our getCompanies function*/
   useEffect(() => {
     getCompanies();
@@ -41,6 +41,7 @@ function CompaniesList() {
   /** Function submitSearch receives string and makes AJAX request using static
    *  method from our JoblyApi class, then sets State or catches error and alerts*/
   async function submitSearch(params) {
+    params = !params ? "" : { nameLike: params };
     try {
       const res = await JoblyApi.getCompanies(params);
       setData({
@@ -56,11 +57,9 @@ function CompaniesList() {
   if (data.isLoading) return <h1>Loading....</h1>;
 
   /** renderInfo receives nothing, returns instances of the CompanyCard component*/
-  //get rid of curlys and use parens
-  // better funciton name like renderCompanies
-  function renderInfo() {
+  function renderCompanyCards() {
     return data.companies.map((company) => (
-       <CompanyCard key={company.handle} company={company} />
+      <CompanyCard key={company.handle} company={company} />
     ));
   }
 
@@ -68,7 +67,7 @@ function CompaniesList() {
     <div>
       <div>
         <SearchForm submitSearch={submitSearch} />
-        {renderInfo()}
+        {renderCompanyCards()}
       </div>
     </div>
   );

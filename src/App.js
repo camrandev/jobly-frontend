@@ -8,7 +8,6 @@ import userContext from "./userContext";
 import JoblyApi from "./api";
 import jwt_decode from "jwt-decode";
 
-//TODO: use effect effect, watching token, when token changes, do something
 /** App returns our BrowserRouter with the NavBar component and the RoutesList component
  *
  * Props: None
@@ -18,28 +17,26 @@ import jwt_decode from "jwt-decode";
  * context: user{} stored in context for use throughout app
  *
  * App -> {Routeslist, NavBar}
-*/
+ */
 function App() {
   const [token, setToken] = useState(JoblyApi.token);
   const [user, setUser] = useState(null);
-  console.log("user is,", user);
 
-  //TODO: state setter function to prop drill-> pass to routeslist, NavBar
+  /**logs the current user out */
   function logout() {
     JoblyApi.token = "";
     setToken(JoblyApi.token);
     setUser(null);
   }
 
+  /**logs a user in with proper credentials */
   async function login(formData) {
-    console.log("hi from login");
-    //pass form data to JoblyApi.login(formData)
     const newToken = await JoblyApi.login(formData);
     JoblyApi.token = newToken;
     setToken(newToken);
-    //save to state and also to JoblyApi.token
   }
 
+  /**allows a new user to sign up */
   async function signUp(formData) {
     console.log("formData in top level signUp function", formData);
     const newToken = await JoblyApi.signUpUser(formData);
@@ -47,6 +44,7 @@ function App() {
     setToken(JoblyApi.token);
   }
 
+  /**allows a user to update their own info when logged in */
   async function update(formData) {
     const username = user.username;
     delete formData.username;
@@ -54,9 +52,11 @@ function App() {
     delete formData.applications;
 
     const userInfo = await JoblyApi.updateUser(formData, username);
-    console.log('userInfo in update', userInfo)
+    console.log("userInfo in update", userInfo);
     setUser({ ...userInfo });
   }
+
+  /**gets user object from API upon receipt of JWT token */
   useEffect(() => {
     async function getUserData() {
       if (token !== "") {
