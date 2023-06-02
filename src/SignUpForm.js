@@ -44,7 +44,7 @@ function SignUpForm({ signUp }) {
     }
   }
 
-  if (user) return <Navigate to="/" />;
+  if (user) return <Navigate to="/companies" />;
 
   return (
     <div className="col-4 mx-auto position-absolute top-50 start-50 translate-middle text-white">

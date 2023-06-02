@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { Navigate } from "react-router-dom";
 import userContext from "./userContext";
 
 /** View/edit info for the current user
@@ -19,6 +20,8 @@ function Profile({ update }) {
   const [formData, setFormData] = useState({ ...user });
   const [errors, setErrors] = useState([]);
   const [updated, setUpdated] = useState(false);
+
+  if (!user) return <Navigate to="/" />;
 
   function handleChange(evt) {
     const { name, value } = evt.target;

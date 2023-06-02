@@ -37,15 +37,14 @@ function LoginForm({ login }) {
     evt.preventDefault();
     try {
       await login(formData);
-      //TODO: going to use useNavigate Hook to send them to companies page
       handleError([]);
     } catch (error) {
       handleError(error);
     }
+    // return <Navigate to="/companies" />
   }
 
-  //TODO: can get rid of context due to above change, repeat this pattern in signUpForm
-  if (user) return <Navigate to="/" />;
+  if (user) return <Navigate to="/companies" />;
 
   //TODO: add required to all form fields
   return (
