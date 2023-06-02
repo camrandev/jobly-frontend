@@ -46,7 +46,6 @@ function LoginForm({ login }) {
 
   if (user) return <Navigate to="/companies" />;
 
-  //TODO: add required to all form fields
   return (
     <div className="col-4 mx-auto position-absolute top-50 start-50 translate-middle text-white">
       <h2>Login</h2>
@@ -63,6 +62,8 @@ function LoginForm({ login }) {
             value={formData?.username || ""}
             onChange={handleChange}
             aria-describedby="usernameHelp"
+            aria-required="true"
+            required
           />
         </div>
         <div className="mb-3">
@@ -71,12 +72,14 @@ function LoginForm({ login }) {
           </label>
           <input
             name="password"
-            type="password" //TODO: make this change across forms
+            type="password"
             className="form-control"
             id="password"
             value={formData?.password || ""}
             onChange={handleChange}
             aria-describedby="passwordHelp"
+            aria-required="true"
+            required
           />
         </div>
 
