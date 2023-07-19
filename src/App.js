@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import NavBar from "./NavBar";
 import { BrowserRouter } from "react-router-dom";
 import RoutesList from "./RoutesList";
-import backgroundImage from "./background-for-jobly.png";
 import userContext from "./userContext";
 import JoblyApi from "./api";
 import jwt_decode from "jwt-decode";
