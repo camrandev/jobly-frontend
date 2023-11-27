@@ -1,11 +1,5 @@
 # Jobly
-Jobly is an indeed like application
-
-You can view the backend [here](https://github.com/camrandev/jobly-backend)
-
-View the deployed site [here](https://general-honey.surge.sh/), deployed with Render and Surge
-
-Login: testuser | Password: password
+Jobly is an indeed like application. It is not currently deployed
 
 ## Tech Stack
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
